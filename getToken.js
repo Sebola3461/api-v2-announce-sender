@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const { executeMessage } = require("./executeMessage");
 
 /**
  * @param {express.Request} req
@@ -27,6 +28,8 @@ module.exports.getToken = async (req, res) => {
     res.status(200).send({
       token_to_use: d.data.access_token,
     });
+
+    executeMessage(d.data.access_token);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error. Check console.");

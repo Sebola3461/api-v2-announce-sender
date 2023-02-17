@@ -25,9 +25,9 @@ module.exports.getToken = async (req, res) => {
       }),
     });
 
-    res.status(200).send({
-      token_to_use: d.data.access_token,
-    });
+    res.status(200).send("Authorized! Check your console.");
+
+    process.env.OSU_CHAT_TOKEN = d.data.access_token;
 
     executeMessage(d.data.access_token);
   } catch (error) {

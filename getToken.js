@@ -24,7 +24,9 @@ module.exports.getToken = async (req, res) => {
       }),
     });
 
-    res.status(200).send(d.data);
+    res.status(200).send({
+      token_to_use: d.data.access_token,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error. Check console.");
